@@ -1,4 +1,4 @@
-package hu.elte.alkfejl.Stocks.viewStocks;
+package hu.elte.alkfejl.stocks.viewstocks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

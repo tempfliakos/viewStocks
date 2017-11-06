@@ -1,6 +1,6 @@
 package hu.elte.alkfejl.stocks.viewstocks.model.stocks;
 
-import hu.elte.alkfejl.stocks.viewstocks.model.users.Users;
+import hu.elte.alkfejl.stocks.viewstocks.model.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ public class Portfolios {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int ID;
     private int owner;
-    private Set<Users> sharedWith;
+    private Set<User> sharedWith;
     private int startingCash;
     private int remainingCash;
     private int lastValue;
@@ -23,7 +23,7 @@ public class Portfolios {
     public Portfolios() {
     }
 
-    public Portfolios(int owner, Set<Users> sharedWith, int startingCash, int remainingCash, int lastValue) {
+    public Portfolios(int owner, Set<User> sharedWith, int startingCash, int remainingCash, int lastValue) {
         this.owner = owner;
         this.sharedWith = sharedWith;
         this.startingCash = startingCash;
@@ -47,11 +47,11 @@ public class Portfolios {
         this.owner = owner;
     }
 
-    public Set<Users> getSharedWith() {
+    public Set<User> getSharedWith() {
         return sharedWith;
     }
 
-    public void setSharedWith(Set<Users> sharedWith) {
+    public void setSharedWith(Set<User> sharedWith) {
         this.sharedWith = sharedWith;
     }
 

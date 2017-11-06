@@ -1,6 +1,6 @@
 package hu.elte.alkfejl.stocks.viewstocks.model.watching;
 
-import hu.elte.alkfejl.stocks.viewstocks.model.users.Users;
+import hu.elte.alkfejl.stocks.viewstocks.model.users.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,12 +15,12 @@ public class Watchlists {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int ID;
     private int owner;
-    private Set<Users> sharedWith;
+    private Set<User> sharedWith;
 
     public Watchlists() {
     }
 
-    public Watchlists(int owner, Set<Users> sharedWith) {
+    public Watchlists(int owner, Set<User> sharedWith) {
         this.owner = owner;
         this.sharedWith = sharedWith;
     }
@@ -41,11 +41,11 @@ public class Watchlists {
         this.owner = owner;
     }
 
-    public Set<Users> getSharedWith() {
+    public Set<User> getSharedWith() {
         return sharedWith;
     }
 
-    public void setSharedWith(Set<Users> sharedWith) {
+    public void setSharedWith(Set<User> sharedWith) {
         this.sharedWith = sharedWith;
     }
 }

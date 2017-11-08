@@ -1,4 +1,4 @@
-package hu.elte.alkfejl.stocks.viewstocks;
+package hu.elte.alkfejl.Stocks.viewStocks;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

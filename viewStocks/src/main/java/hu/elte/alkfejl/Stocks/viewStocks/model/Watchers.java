@@ -1,4 +1,4 @@
-package hu.elte.alkfejl.stocks.viewstocks.model.watching;
+package hu.elte.alkfejl.Stocks.viewStocks.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

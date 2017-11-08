@@ -1,18 +1,23 @@
-package hu.elte.alkfejl.stocks.viewstocks.model.users;
+package hu.elte.alkfejl.Stocks.viewStocks.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "USER")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int ID;
+    @Column(name = "ID")
+    private long ID;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "EMAIL")
     private String email;
 
     public User(){}
@@ -23,7 +28,7 @@ public class User {
         this.email = email;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 

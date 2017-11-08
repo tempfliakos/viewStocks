@@ -1,8 +1,8 @@
-package hu.elte.alkfejl.stocks.viewstocks.controller;
+package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
-import hu.elte.alkfejl.stocks.viewstocks.model.users.User;
-import hu.elte.alkfejl.stocks.viewstocks.service.UserService;
-import hu.elte.alkfejl.stocks.viewstocks.util.Response;
+import hu.elte.alkfejl.Stocks.viewStocks.model.User;
+import hu.elte.alkfejl.Stocks.viewStocks.service.UserService;
+import hu.elte.alkfejl.Stocks.viewStocks.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

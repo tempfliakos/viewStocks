@@ -1,7 +1,7 @@
-package hu.elte.alkfejl.stocks.viewstocks.service;
+package hu.elte.alkfejl.Stocks.viewStocks.service;
 
-import hu.elte.alkfejl.stocks.viewstocks.model.users.User;
-import hu.elte.alkfejl.stocks.viewstocks.repository.UserRepository;
+import hu.elte.alkfejl.Stocks.viewStocks.model.User;
+import hu.elte.alkfejl.Stocks.viewStocks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

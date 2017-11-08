@@ -1,6 +1,6 @@
-package hu.elte.alkfejl.stocks.viewstocks.repository;
+package hu.elte.alkfejl.Stocks.viewStocks.repository;
 
-import hu.elte.alkfejl.stocks.viewstocks.model.users.User;
+import hu.elte.alkfejl.Stocks.viewStocks.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

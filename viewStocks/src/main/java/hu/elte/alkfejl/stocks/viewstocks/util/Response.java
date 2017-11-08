@@ -1,4 +1,4 @@
-package hu.elte.alkfejl.stocks.viewstocks.util;
+package hu.elte.alkfejl.Stocks.viewStocks.util;
 
 public class Response<T> {
 

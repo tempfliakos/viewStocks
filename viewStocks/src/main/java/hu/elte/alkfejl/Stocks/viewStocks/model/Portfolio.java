@@ -11,7 +11,7 @@ public class Portfolio {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private int ID;
+    private int id;
 
     @JoinColumn(name = "USER_ID", nullable = false)
     private User owner;
@@ -19,7 +19,7 @@ public class Portfolio {
 //    TODO: private Set<User> sharedWith;
 
     @OneToMany(mappedBy = "portfolio")
-    private List<Transaction> transactions;
+    private Set<Position> positions;
 
     @Column(name = "STARTING_CASH")
     private double startingCash;
@@ -39,12 +39,12 @@ public class Portfolio {
         this.remainingCash = remainingCash;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public User getOwner() {

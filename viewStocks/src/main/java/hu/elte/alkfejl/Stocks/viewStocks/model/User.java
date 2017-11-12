@@ -9,41 +9,29 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private long ID;
-
-    @Column(name = "USERNAME")
-    private String username;
-
-    @Column(name = "PASSWORD")
-    private String password;
+    private long id;
 
     @Column(name = "EMAIL")
     private String email;
 
+    @Column(name = "PASSWORD")
+    private String password;
+
     public User(){}
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
+    public User(String email, String password) {
         this.email = email;
+        this.password = password;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(int id) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    
     public String getPassword() {
         return password;
     }

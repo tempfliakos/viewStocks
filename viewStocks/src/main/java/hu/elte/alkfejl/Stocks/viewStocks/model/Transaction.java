@@ -13,11 +13,11 @@ public class Transaction { //TODO: annotations
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private long ID;
+    private long id;
 
     @ManyToOne
-    @Column(name = "PORTFOLIO_ID")
-    private Portfolio portfolio;
+    @Column(name = "POSITION_ID")
+    private Position position;
 
     @Column(name = "TICKER")
     private String ticker;
@@ -49,8 +49,8 @@ public class Transaction { //TODO: annotations
     public Transaction() {
     }
 
-    public Transaction(Portfolio portfolio, String ticker, TransactionType type, Date date, int numberOfShares, double pricePerAmount, double costBasis, double commission, boolean deductFromCash) {
-        this.portfolio = portfolio;
+    public Transaction(Position position, String ticker, TransactionType type, Date date, int numberOfShares, double pricePerAmount, double costBasis, double commission, boolean deductFromCash) {
+        this.position = position;
         this.ticker = ticker;
         this.type = type;
         this.date = date;
@@ -61,20 +61,12 @@ public class Transaction { //TODO: annotations
         this.deductFromCash = deductFromCash;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
-    }
-
-    public Portfolio getPortfolio() {
-        return portfolio;
-    }
-
-    public void setPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTicker() {

@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Response<Object> register(@RequestParam(value = "username") String username,
-                                     @RequestParam(value = "password") String password,
-                                     @RequestParam(value = "email") String email) {
-        Optional<User> optionalUser = userService.register(username,password,email);
+    public Response<Object> register(@RequestParam(value = "email") String email,
+                                     @RequestParam(value = "password") String password) {
+        Optional<User> optionalUser = userService.register(email,password);
         if(optionalUser.isPresent()){
             User user = optionalUser.get();
             return Response.ok(user);
@@ -31,9 +30,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Response<Object> login(@RequestParam(value = "username") String username,
+    public Response<Object> login(@RequestParam(value = "email") String email,
                                   @RequestParam(value = "password") String password){
-        Optional<User> optionalUser = userService.login(username,password);
+        Optional<User> optionalUser = userService.login(email,password);
         if(optionalUser.isPresent()) {
             User user = optionalUser.get();
             return Response.ok(user);

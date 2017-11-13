@@ -30,8 +30,7 @@ public class Portfolio {
     @Column(name = "LAST_VALUE")
     private double lastValue;
 
-    public Portfolio() {
-    }
+    public Portfolio() {}
 
     public Portfolio(User owner, double startingCash, double remainingCash) {
         this.owner = owner;

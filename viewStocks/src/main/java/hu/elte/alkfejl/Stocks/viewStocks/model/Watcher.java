@@ -1,24 +1,28 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Watchers {
+public class Watcher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ID")
     private int ID;
+
+    @Column(name = "USER")
     private int userID;
+
+    @Column(name = "WATCHLIST")
     private int watchlistID;
+
+    @Column(name = "TICKER")
     private String ticker;
 
-    public Watchers() {
+    public Watcher() {
     }
 
-    public Watchers(int userID, int watchlistID, String ticker) {
+    public Watcher(int userID, int watchlistID, String ticker) {
         this.userID = userID;
         this.watchlistID = watchlistID;
         this.ticker = ticker;

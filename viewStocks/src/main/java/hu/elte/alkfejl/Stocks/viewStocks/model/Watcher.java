@@ -3,18 +3,17 @@ package hu.elte.alkfejl.Stocks.viewStocks.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "WATCHER")
 public class Watcher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private int ID;
+    private Long id;
 
-    @Column(name = "USER")
-    private int userID;
-
-    @Column(name = "WATCHLIST")
-    private int watchlistID;
+    @ManyToOne
+    @JoinColumn(name = "WATCHLIST_ID")
+    private Watchlist watchlist;
 
     @Column(name = "TICKER")
     private String ticker;
@@ -22,34 +21,17 @@ public class Watcher {
     public Watcher() {
     }
 
-    public Watcher(int userID, int watchlistID, String ticker) {
-        this.userID = userID;
-        this.watchlistID = watchlistID;
+    public Watcher(Watchlist watchlist, String ticker) {
+        this.watchlist = watchlist;
         this.ticker = ticker;
     }
 
-    public int getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getWatchlistID() {
-        return watchlistID;
-    }
-
-    public void setWatchlistID(int watchlistID) {
-        this.watchlistID = watchlistID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTicker() {
@@ -58,5 +40,13 @@ public class Watcher {
 
     public void setTicker(String ticker) {
         this.ticker = ticker;
+    }
+
+    public Watchlist getWatchlist() {
+        return watchlist;
+    }
+
+    public void setWatchlist(Watchlist watchlist) {
+        this.watchlist = watchlist;
     }
 }

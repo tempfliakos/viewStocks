@@ -13,10 +13,10 @@ public class Transaction { //TODO: annotations
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @ManyToOne
-    @Column(name = "POSITION_ID")
+    @JoinColumn(name = "POSITION_ID")
     private Position position;
 
     @Column(name = "TICKER")
@@ -61,11 +61,11 @@ public class Transaction { //TODO: annotations
         this.deductFromCash = deductFromCash;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -131,5 +131,13 @@ public class Transaction { //TODO: annotations
 
     public void setDeductFromCash(boolean deductFromCash) {
         this.deductFromCash = deductFromCash;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

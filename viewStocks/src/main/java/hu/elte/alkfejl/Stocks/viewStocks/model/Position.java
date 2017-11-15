@@ -16,14 +16,16 @@ public class Position {
     private Set<Transaction> transactions;
 
     @ManyToOne
+    @JoinColumn(name = "PORTFOLIO_ID")
     private Portfolio portfolio;
 
     @Column(name = "TICKER")
     private String ticker;
 
+    @Column(name = "NUM_OF_SHARES")
     private double numOfShares;
 
-    //calculate from transaction costs
+    @Column(name = "COST")
     private double cost;
 
 

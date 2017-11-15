@@ -11,9 +11,10 @@ public class Portfolio {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private int id;
+    private Long id;
 
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "OWNER_ID", nullable = false)
     private User owner;
 
 //    TODO: private Set<User> sharedWith;
@@ -32,17 +33,19 @@ public class Portfolio {
 
     public Portfolio() {}
 
-    public Portfolio(User owner, double startingCash, double remainingCash) {
+    public Portfolio(User owner, Set<Position> positions, double startingCash, double remainingCash, double lastValue) {
         this.owner = owner;
+        this.positions = positions;
         this.startingCash = startingCash;
         this.remainingCash = remainingCash;
+        this.lastValue = lastValue;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -76,5 +79,13 @@ public class Portfolio {
 
     public void setLastValue(double lastValue) {
         this.lastValue = lastValue;
+    }
+
+    public Set<Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
     }
 }

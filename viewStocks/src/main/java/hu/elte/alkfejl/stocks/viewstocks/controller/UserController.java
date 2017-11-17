@@ -20,8 +20,8 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Response<Object> register(@RequestParam(value = "email") String email,
                                      @RequestParam(value = "password") String password) {
-        Optional<User> optionalUser = userService.register(email,password);
-        if(optionalUser.isPresent()){
+        Optional<User> optionalUser = userService.register(email, password);
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             return Response.ok(user);
 
@@ -31,12 +31,23 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Response<Object> login(@RequestParam(value = "email") String email,
-                                  @RequestParam(value = "password") String password){
-        Optional<User> optionalUser = userService.login(email,password);
-        if(optionalUser.isPresent()) {
+                                  @RequestParam(value = "password") String password) {
+        Optional<User> optionalUser = userService.login(email, password);
+        if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             return Response.ok(user);
         }
         return Response.error("Wrong username password pair!");
     }
+
+    //TODO: modify
+    /*@RequestMapping(value = "/modify", method = RequestMethod.POST)
+    public Response<Object> modify(@RequestParam(value = "email") String email,
+                                   @RequestParam(value = "password") String password) {
+        Optional<User> optionalUser = userService.modify(email, password);
+        if(optionalUser != null) {
+            return Response.ok("Modify success!");
+        }
+        return Response.error("Can't modify!");
+    }*/
 }

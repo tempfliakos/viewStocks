@@ -1,10 +1,17 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "PORTFOLIO")
 public class Portfolio {
 
@@ -30,62 +37,4 @@ public class Portfolio {
 
     @Column(name = "LAST_VALUE")
     private double lastValue;
-
-    public Portfolio() {}
-
-    public Portfolio(User owner, Set<Position> positions, double startingCash, double remainingCash, double lastValue) {
-        this.owner = owner;
-        this.positions = positions;
-        this.startingCash = startingCash;
-        this.remainingCash = remainingCash;
-        this.lastValue = lastValue;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public double getStartingCash() {
-        return startingCash;
-    }
-
-    public void setStartingCash(double startingCash) {
-        this.startingCash = startingCash;
-    }
-
-    public double getRemainingCash() {
-        return remainingCash;
-    }
-
-    public void setRemainingCash(double remainingCash) {
-        this.remainingCash = remainingCash;
-    }
-
-    public double getLastValue() {
-        return lastValue;
-    }
-
-    public void setLastValue(double lastValue) {
-        this.lastValue = lastValue;
-    }
-
-    public Set<Position> getPositions() {
-        return positions;
-    }
-
-    public void setPositions(Set<Position> positions) {
-        this.positions = positions;
-    }
 }

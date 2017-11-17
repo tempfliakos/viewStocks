@@ -1,5 +1,8 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -7,6 +10,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "TRANSACTION")
 public class Transaction { //TODO: annotations
 
@@ -46,98 +52,4 @@ public class Transaction { //TODO: annotations
     @Column(name = "DEDUCT_FROM_CASH")
     private boolean deductFromCash;
 
-    public Transaction() {
-    }
-
-    public Transaction(Position position, String ticker, TransactionType type, Date date, int numberOfShares, double pricePerAmount, double costBasis, double commission, boolean deductFromCash) {
-        this.position = position;
-        this.ticker = ticker;
-        this.type = type;
-        this.date = date;
-        this.numberOfShares = numberOfShares;
-        this.pricePerAmount = pricePerAmount;
-        this.costBasis = costBasis;
-        this.commission = commission;
-        this.deductFromCash = deductFromCash;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTicker() {
-        return ticker;
-    }
-
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
-    }
-
-    public TransactionType getType() {
-        return type;
-    }
-
-    public void setType(TransactionType type) {
-        this.type = type;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getNumberOfShares() {
-        return numberOfShares;
-    }
-
-    public void setNumberOfShares(int numberOfShares) {
-        this.numberOfShares = numberOfShares;
-    }
-
-    public double getPricePerAmount() {
-        return pricePerAmount;
-    }
-
-    public void setPricePerAmount(double pricePerAmount) {
-        this.pricePerAmount = pricePerAmount;
-    }
-
-    public double getCostBasis() {
-        return costBasis;
-    }
-
-    public void setCostBasis(double costBasis) {
-        this.costBasis = costBasis;
-    }
-
-    public double getCommission() {
-        return commission;
-    }
-
-    public void setCommission(double commission) {
-        this.commission = commission;
-    }
-
-    public boolean isDeductFromCash() {
-        return deductFromCash;
-    }
-
-    public void setDeductFromCash(boolean deductFromCash) {
-        this.deductFromCash = deductFromCash;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
 }

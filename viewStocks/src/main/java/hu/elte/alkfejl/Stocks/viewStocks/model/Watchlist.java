@@ -1,10 +1,17 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "WATCHLIST")
 public class Watchlist {
 
@@ -24,43 +31,4 @@ public class Watchlist {
     @OneToMany(mappedBy = "watchlist")
     private Set<Watcher> watchers;
 
-    public Watchlist() {
-    }
-
-    public Watchlist(User owner, Set<User> sharedWith) {
-        this.owner = owner;
-//        this.sharedWith = sharedWith;
-    }
-
-    public Long getID() {
-        return ID;
-    }
-
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-//    public Set<User> getSharedWith() {
-//        return sharedWith;
-//    }
-//
-//    public void setSharedWith(Set<User> sharedWith) {
-//        this.sharedWith = sharedWith;
-//    }
-
-    public Set<Watcher> getWatchers() {
-        return watchers;
-    }
-
-    public void setWatchers(Set<Watcher> watchers) {
-        this.watchers = watchers;
-    }
 }

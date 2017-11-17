@@ -34,4 +34,16 @@ public class UserService {
         return Optional.empty();
     }
 
+    /*public Optional<User> modify(String email, String password) {
+        Optional<User> optionalUser = userRepository.modify(email, password);
+        if(optionalUser.isPresent()) {
+            user = optionalUser.get();
+            user.setEmail(email);
+            user.setPassword(password);
+            userRepository.save(user);
+            return Optional.of(user);
+        }
+        return null;
+    }*/
+
 }

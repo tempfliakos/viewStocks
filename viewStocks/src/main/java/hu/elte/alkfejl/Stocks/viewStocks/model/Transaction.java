@@ -17,9 +17,9 @@ import java.util.Date;
 public class Transaction { //TODO: annotations
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "POSITION_ID")

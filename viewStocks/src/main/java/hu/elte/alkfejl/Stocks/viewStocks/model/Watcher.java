@@ -14,9 +14,9 @@ import javax.persistence.*;
 public class Watcher {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "WATCHLIST_ID")

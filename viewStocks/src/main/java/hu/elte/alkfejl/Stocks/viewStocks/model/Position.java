@@ -15,9 +15,9 @@ import java.util.Set;
 public class Position {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @OneToMany(mappedBy = "position")
     private Set<Transaction> transactions;

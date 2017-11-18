@@ -17,12 +17,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
-    @Column(name = "EMAIL")
+    @Column(nullable = false, name = "EMAIL", length = 30, unique = true)
     private String email;
 
-    @Column(name = "PASSWORD")
+    @Column(nullable = false, name = "PASSWORD", length = 15)
     private String password;
 
     @OneToMany(mappedBy = "owner")
@@ -35,5 +35,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
 
 }

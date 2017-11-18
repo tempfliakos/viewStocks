@@ -16,9 +16,9 @@ import java.util.Set;
 public class Portfolio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "OWNER_ID", nullable = false)

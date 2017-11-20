@@ -25,7 +25,7 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
 
         if(!optionalUser.isPresent()) {
-            User user = new User();
+            user = new User();
             user.setEmail(email);
             user.setPassword(password);
             userRepository.save(user);
@@ -34,8 +34,8 @@ public class UserService {
         return Optional.empty();
     }
 
-    /*public Optional<User> modify(String email, String password) {
-        Optional<User> optionalUser = userRepository.modify(email, password);
+    public Optional<User> update(String email, String password) {
+        Optional<User> optionalUser = userRepository.update(email);
         if(optionalUser.isPresent()) {
             user = optionalUser.get();
             user.setEmail(email);
@@ -44,6 +44,7 @@ public class UserService {
             return Optional.of(user);
         }
         return null;
-    }*/
+    }
+
 
 }

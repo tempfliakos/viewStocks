@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -37,4 +38,5 @@ public class Portfolio {
 
     @Column(name = "LAST_VALUE")
     private double lastValue;
+
 }

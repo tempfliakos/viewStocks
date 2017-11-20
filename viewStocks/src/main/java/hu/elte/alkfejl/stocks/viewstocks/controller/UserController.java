@@ -40,14 +40,13 @@ public class UserController {
         return Response.error("Wrong username password pair!");
     }
 
-    //TODO: modify
-    /*@RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public Response<Object> modify(@RequestParam(value = "email") String email,
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Response<Object> update(@RequestParam(value = "email") String email,
                                    @RequestParam(value = "password") String password) {
-        Optional<User> optionalUser = userService.modify(email, password);
-        if(optionalUser != null) {
+        Optional<User> optionalUser = userService.update(email,password);
+        if(optionalUser.isPresent()) {
             return Response.ok("Modify success!");
         }
         return Response.error("Can't modify!");
-    }*/
+    }
 }

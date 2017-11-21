@@ -18,6 +18,7 @@ public class PortfolioService {
     @Autowired
     private PortfolioRepository portfolioRepository;
     private Portfolio portfolio;
+    private long id;
 
     public Optional<Portfolio> add(User owner, Set<Position> positions, double startingCash, double remainingCash, double lastValue) {
         Optional<Portfolio> optionalPortfolio = portfolioRepository.findById(id);   //TODO: id-t megszerezni valahonnan, mindig az utolsó id-t eltároljuk és lesz egy publikus getLastId metódus
@@ -34,7 +35,7 @@ public class PortfolioService {
         return Optional.empty();
     }
 
-    public Optional<Portfolio> delete(User owner, Set<Position> positions, double startingCash, double remainingCash, double lastValue) {
+    public void delete(User owner, Set<Position> positions, double startingCash, double remainingCash, double lastValue) {
         portfolioRepository.delete(id);
     }
 

@@ -42,11 +42,8 @@ public class PortfolioController {
                                 @RequestParam(value = "startingCash") double startingCash,
                                 @RequestParam(value = "remainingCash") double remainingCash,
                                 @RequestParam(value = "lastValue") double lastValue) {
-        Optional<Portfolio> optionalPortfolio = portfolioService.delete(owner,positions,startingCash,remainingCash,lastValue);
-        if (!optionalPortfolio.isPresent()) {
-            return Response.ok("Delete successfull!");
-        }
-        return Response.error("Can't delete this portfolio!");
+        portfolioService.delete(owner,positions,startingCash,remainingCash,lastValue);
+        return Response.ok("Delete was successfull!");
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

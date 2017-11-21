@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public Optional<User> update(String email, String password) {
-        Optional<User> optionalUser = userRepository.update(email);
+        Optional<User> optionalUser = userRepository.findByEmail(email);
         if(optionalUser.isPresent()) {
             user = optionalUser.get();
             user.setEmail(email);
@@ -43,8 +43,6 @@ public class UserService {
             userRepository.save(user);
             return Optional.of(user);
         }
-        return null;
+        return Optional.empty();
     }
-
-
 }

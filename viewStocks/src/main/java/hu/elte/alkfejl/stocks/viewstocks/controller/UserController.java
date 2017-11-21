@@ -16,13 +16,14 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+    private User user;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public Response<Object> register(@RequestParam(value = "email") String email,
                                      @RequestParam(value = "password") String password) {
         Optional<User> optionalUser = userService.register(email, password);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+            user = optionalUser.get();
             return Response.ok(user);
 
         }
@@ -34,7 +35,7 @@ public class UserController {
                                   @RequestParam(value = "password") String password) {
         Optional<User> optionalUser = userService.login(email, password);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
+            user = optionalUser.get();
             return Response.ok(user);
         }
         return Response.error("Wrong username password pair!");
@@ -45,7 +46,8 @@ public class UserController {
                                    @RequestParam(value = "password") String password) {
         Optional<User> optionalUser = userService.update(email,password);
         if(optionalUser.isPresent()) {
-            return Response.ok("Modify success!");
+            user = optionalUser.get();
+            return Response.ok(user);
         }
         return Response.error("Can't modify!");
     }

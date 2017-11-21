@@ -20,6 +20,7 @@ public class PortfolioController {
 
     @Autowired
     private PortfolioService portfolioService;
+    private Portfolio portfolio;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public Response<Object> add(@RequestParam(value = "owner")User owner,
@@ -29,8 +30,7 @@ public class PortfolioController {
                                 @RequestParam(value = "lastValue") double lastValue) {
         Optional<Portfolio> optionalPortfolio = portfolioService.add(owner,positions,startingCash,remainingCash,lastValue);
         if (optionalPortfolio.isPresent()) {
-            Portfolio portfolio = optionalPortfolio.get();
-
+            portfolio = optionalPortfolio.get();
             return Response.ok(portfolio);
         }
         return Response.error("Can't add this portfolio!");
@@ -57,7 +57,8 @@ public class PortfolioController {
                                    @RequestParam(value = "lastValue") double lastValue) {
         Optional<Portfolio> optionalPortfolio = portfolioService.update(owner,positions,startingCash,remainingCash,lastValue);
         if (optionalPortfolio.isPresent()) {
-            return Response.ok("Update successfull!");
+            portfolio = optionalPortfolio.get();
+            return Response.ok(portfolio);
         }
         return Response.error("Can't update this portfolio!");
     }

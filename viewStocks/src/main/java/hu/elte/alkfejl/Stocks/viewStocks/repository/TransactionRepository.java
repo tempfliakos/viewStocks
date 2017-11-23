@@ -1,12 +1,10 @@
 package hu.elte.alkfejl.Stocks.viewStocks.repository;
 
-import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
+import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface PortfolioRepository extends CrudRepository<Portfolio, Long> {
+public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
 }

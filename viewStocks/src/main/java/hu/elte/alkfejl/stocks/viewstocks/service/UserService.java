@@ -1,48 +1,37 @@
 package hu.elte.alkfejl.Stocks.viewStocks.service;
 
+import hu.elte.alkfejl.Stocks.viewStocks.exceptions.UserAlreadyExistException;
 import hu.elte.alkfejl.Stocks.viewStocks.model.User;
 import hu.elte.alkfejl.Stocks.viewStocks.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.Optional;
-
 @Service
 @SessionScope
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
-    private User user;
-
-    public Optional<User> login(String email, String password) {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-        return optionalUser.filter(user -> user.getPassword().equals(password));
+    public void login(User user) {
+        userRepository.findOne(10L);
     }
 
-    public Optional<User> register(String email, String password){
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-
-        if(!optionalUser.isPresent()) {
-            user = new User();
-            user.setEmail(email);
-            user.setPassword(password);
-            userRepository.save(user);
-            return Optional.of(user);
+    public void register(User user){
+        for(User u: userRepository.findAll()) {
+            if(user.equals(u)) {
+                try {
+                    throw new UserAlreadyExistException();
+                } catch (UserAlreadyExistException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-        return Optional.empty();
+        userRepository.save(user);
     }
 
-    public Optional<User> update(String email, String password) {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-        if(optionalUser.isPresent()) {
-            user = optionalUser.get();
-            user.setEmail(email);
-            user.setPassword(password);
-            userRepository.save(user);
-            return Optional.of(user);
-        }
-        return Optional.empty();
+    public void update(User user) {
+        userRepository.save(user);
     }
 }

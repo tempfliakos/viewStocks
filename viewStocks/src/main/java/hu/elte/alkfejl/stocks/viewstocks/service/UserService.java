@@ -14,8 +14,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void login(User user) {
-        userRepository.findOne(10L);
+    public boolean login(User user) {
+        return userRepository.exists(user.getId());
     }
 
     public void register(User user){

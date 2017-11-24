@@ -2,11 +2,11 @@ package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.User;
 import hu.elte.alkfejl.Stocks.viewStocks.service.UserService;
-import hu.elte.alkfejl.Stocks.viewStocks.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
@@ -20,8 +20,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public void login(@RequestBody User user) {
-        userService.login(user);
+    public boolean login(@RequestBody User user) {
+        return userService.login(user);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)

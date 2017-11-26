@@ -16,18 +16,18 @@ public class PortfolioController {
     private PortfolioService portfolioService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void add(@RequestBody Portfolio portfolio) {
-        portfolioService.add(portfolio);
+    public Portfolio add(@RequestBody Portfolio portfolio) {
+        return portfolioService.add(portfolio);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void delete(@RequestBody Portfolio portfolio) {
         portfolioService.delete(portfolio);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void update(@RequestBody Portfolio portfolio) {
-        portfolioService.update(portfolio);
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public Portfolio update(@RequestBody Portfolio portfolio) {
+        return portfolioService.update(portfolio);
     }
 
 }

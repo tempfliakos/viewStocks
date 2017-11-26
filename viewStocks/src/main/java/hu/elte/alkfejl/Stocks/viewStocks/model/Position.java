@@ -11,13 +11,13 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "POSITION")
+@Table(name = "POSITIONS")
 public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @OneToMany(mappedBy = "position")
     private Set<Transaction> transactions;

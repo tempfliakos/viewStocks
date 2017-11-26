@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "WATCHLIST")
+@Table(name = "WATCHLISTS")
 public class Watchlist {
 
     @Id

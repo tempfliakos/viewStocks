@@ -1,0 +1,1 @@
+INSERT INTO USERS (ID, EMAIL, PASSWORD) VALUES (1, 'eleven@doe.gov', 'eggo');

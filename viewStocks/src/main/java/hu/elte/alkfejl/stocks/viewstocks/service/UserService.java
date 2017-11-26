@@ -14,12 +14,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(User user) {
-        return userRepository.exists(user.getId());
+    public User login(User user) {
+        return userRepository.findByEmail(user.getEmail());
     }
 
-    public void register(User user){
-        for(User u: userRepository.findAll()) {
+    public User register(User user){
+        for(User u : userRepository.findAll()) {
             if(user.equals(u)) {
                 try {
                     throw new UserAlreadyExistException();
@@ -28,10 +28,10 @@ public class UserService {
                 }
             }
         }
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
-    public void update(User user) {
-        userRepository.save(user);
+    public User update(User user) {
+        return userRepository.save(user);
     }
 }

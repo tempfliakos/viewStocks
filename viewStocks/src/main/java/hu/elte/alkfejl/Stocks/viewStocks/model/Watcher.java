@@ -10,13 +10,13 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "WATCHER")
+@Table(name = "WATCHERS")
 public class Watcher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "WATCHLIST_ID")

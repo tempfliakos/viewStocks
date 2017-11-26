@@ -11,18 +11,18 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
-    @Column(nullable = false, name = "EMAIL", length = 30, unique = true)
+    @Column(nullable = false, name = "EMAIL", unique = true)
     private String email;
 
-    @Column(nullable = false, name = "PASSWORD", length = 15)
+    @Column(nullable = false, name = "PASSWORD")
     private String password;
 
     @OneToMany(mappedBy = "owner")
@@ -30,11 +30,5 @@ public class User {
 
     @OneToMany(mappedBy = "owner")
     private Set<Watchlist> watchlists;
-
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
 
 }

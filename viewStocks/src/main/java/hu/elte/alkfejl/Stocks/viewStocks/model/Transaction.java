@@ -3,6 +3,7 @@ package hu.elte.alkfejl.Stocks.viewStocks.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,43 +14,44 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TRANSACTION")
-public class Transaction { //TODO: annotations
+@Table(name = "TRANSACTIONS")
+public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "POSITION_ID")
     private Position position;
 
-    @Column(name = "TICKER")
+    @Column(name = "TICKER", nullable = false)
     private String ticker;
 
-    @Column(name = "TRANSACTION_TYPE")
+    @Column(name = "TRANSACTION_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private TransactionType type;
 
-    @Column(name = "DATE")
-    @Type(type="date")
+    @Column(name = "DATE", nullable = false)
+    @Type(type = "date")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date date;
 
-    @Column(name = "NUMBER_OF_SHARES")
+    @Column(name = "NUMBER_OF_SHARES", nullable = false)
     private int numberOfShares;
 
-    @Column(name = "PRICE_PER_AMOUNT")
+    @Column(name = "PRICE_PER_AMOUNT", nullable = false)
     private double pricePerAmount;
-
-    @Column(name = "COST_BASIS")
-    private double costBasis;
 
     @Column(name = "COMMISSION")
     private double commission;
 
-    @Column(name = "DEDUCT_FROM_CASH")
+    @Column(name = "COST_BASIS")
+    @Formula("NUMBER_OF_SHARES * PRICE_PER_AMOUNT - COMMISION")
+    private double costBasis;
+
+    @Column(name = "DEDUCT_FROM_CASH", nullable = false)
     private boolean deductFromCash;
 
 }

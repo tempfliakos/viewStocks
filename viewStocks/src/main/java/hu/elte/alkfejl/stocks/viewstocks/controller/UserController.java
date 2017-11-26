@@ -15,17 +15,17 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public void register(@RequestBody User user) {
-        userService.register(user);
+    public User register(@RequestBody User user) {
+        return userService.register(user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public boolean login(@RequestBody User user) {
+    public User login(@RequestBody User user) {
         return userService.login(user);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public void update(@RequestBody User user) {
-        userService.update(user);
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public User update(@RequestBody User user) {
+        return userService.update(user);
     }
 }

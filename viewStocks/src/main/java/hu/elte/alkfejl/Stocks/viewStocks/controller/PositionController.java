@@ -2,7 +2,6 @@ package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.Position;
 import hu.elte.alkfejl.Stocks.viewStocks.service.PositionService;
-import hu.elte.alkfejl.Stocks.viewStocks.util.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,12 +20,12 @@ public class PositionController {
         positionService.add(position);
     }
 
-   @RequestMapping(value = "/delete", method = RequestMethod.POST)
+   @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public void delete(@RequestBody Position position) {
         positionService.delete(position);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(@RequestBody Position position) {
         positionService.update(position);
         }

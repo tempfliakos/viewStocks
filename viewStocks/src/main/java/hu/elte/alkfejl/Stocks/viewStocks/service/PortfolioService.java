@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.List;
+
 @Service
 @SessionScope
 public class PortfolioService {
@@ -23,5 +25,9 @@ public class PortfolioService {
 
     public Portfolio update(Portfolio portfolio) {
         return portfolioRepository.save(portfolio);
+    }
+
+    public List<Portfolio> getUserPortfolios(Long userId) {
+        return portfolioRepository.findByOwner(userId);
     }
 }

@@ -2,7 +2,7 @@ package hu.elte.alkfejl.Stocks.viewStocks.exceptions;
 
 public class UserAlreadyExistException extends Throwable {
 
-   public UserAlreadyExistException() {
+    public UserAlreadyExistException() {
         super();
     }
 

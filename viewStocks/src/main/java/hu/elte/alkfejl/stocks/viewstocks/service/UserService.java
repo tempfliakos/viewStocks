@@ -14,11 +14,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User login(User user) {
-        return userRepository.findByEmail(user.getEmail());
+    public User login(String email, String password) {
+        User user = userRepository.findByEmail(email);
+        if(user != null && password.equals(user.getPassword())){
+            return user;
+        }
+        return null;
     }
 
-    public User register(User user){
+    public User register(String email, String password){
+        User user = new User(email, password);
         for(User u : userRepository.findAll()) {
             if(user.equals(u)) {
                 try {

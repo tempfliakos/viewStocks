@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,9 @@ public class Portfolio {
     @Column(name = "ID")
     private Long id;
 
+    @Column(name = "NAME")
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "OWNER_ID", nullable = false)
     private User owner;
@@ -26,7 +30,10 @@ public class Portfolio {
 //    TODO: private Set<User> sharedWith;
 
     @OneToMany(mappedBy = "portfolio")
-    private Set<Position> positions;
+    private Map<String, Position> positions;
+
+    @OneToMany(mappedBy = "portfolio")
+    private Set<Transaction> transactions;
 
     @Column(name = "STARTING_CASH")
     private double startingCash;

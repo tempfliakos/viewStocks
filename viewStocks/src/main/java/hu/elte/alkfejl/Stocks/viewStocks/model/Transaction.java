@@ -23,8 +23,8 @@ public class Transaction {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "POSITION_ID")
-    private Position position;
+    @JoinColumn(name = "PORTFOLIO_ID")
+    private Portfolio portfolio;
 
     @Column(name = "TICKER", nullable = false)
     private String ticker;

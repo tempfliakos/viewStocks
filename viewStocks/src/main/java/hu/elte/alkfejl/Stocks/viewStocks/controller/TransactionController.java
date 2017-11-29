@@ -1,5 +1,6 @@
 package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
+import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
 import hu.elte.alkfejl.Stocks.viewStocks.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class TransactionController {
     public List<Transaction> updateAll(@RequestBody Transaction[] transactions) {
         List<Transaction> transactionList = Arrays.asList(transactions);
         return transactionService.updateAll(transactionList);
+    }
+
+    @RequestMapping(value = "/getPortfolioTransactions", method = RequestMethod.GET)
+    public List<Transaction> getPortfolioTransaction(@RequestBody Portfolio portfolio){
+        return transactionService.getPortfolioTransactions(portfolio);
     }
 }

@@ -3,10 +3,9 @@ package hu.elte.alkfejl.Stocks.viewStocks.controller;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/portfolio")
@@ -28,6 +27,11 @@ public class PortfolioController {
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Portfolio update(@RequestBody Portfolio portfolio) {
         return portfolioService.update(portfolio);
+    }
+
+    @RequestMapping(value = "/getUserPortfoios", method = RequestMethod.GET)
+    public List<Portfolio> getUserPortfolios(@PathVariable Long userId) {
+        return portfolioService.getUserPortfolios(userId);
     }
 
 }

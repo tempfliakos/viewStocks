@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Data
@@ -19,9 +18,6 @@ public class Position {
     @Column(name = "ID")
     private Long id;
 
-    @OneToMany(mappedBy = "position")
-    private Set<Transaction> transactions;
-
     @ManyToOne
     @JoinColumn(name = "PORTFOLIO_ID")
     private Portfolio portfolio;
@@ -30,7 +26,7 @@ public class Position {
     private String ticker;
 
     @Column(name = "NUM_OF_SHARES")
-    private double numOfShares;
+    private int numOfShares;
 
     @Column(name = "COST")
     private double cost;

@@ -48,7 +48,7 @@ public class Transaction {
     private Double commission;
 
     @Column(name = "COST_BASIS")
-    @Formula("NUMBER_OF_SHARES * PRICE_PER_AMOUNT - COMMISION")
+    @Formula("NUMBER_OF_SHARES * PRICE_PER_AMOUNT - COMMISSION")
     private Double costBasis;
 
     @Column(name = "DEDUCT_FROM_CASH", nullable = false)

@@ -27,7 +27,11 @@ public class PortfolioService {
         return portfolioRepository.save(portfolio);
     }
 
-    public List<Portfolio> getUserPortfolios(Long userId) {
-        return portfolioRepository.findByOwner(userId);
+    public Portfolio getById(Long portfolioId) {
+        return portfolioRepository.findOne(portfolioId);
+    }
+
+    public List<Portfolio> getOwnedPortfolios(Long userId) {
+        return portfolioRepository.findByOwnerId(userId);
     }
 }

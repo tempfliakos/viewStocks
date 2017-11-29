@@ -29,9 +29,9 @@ public class PortfolioController {
         return portfolioService.update(portfolio);
     }
 
-    @RequestMapping(value = "/getUserPortfoios", method = RequestMethod.GET)
-    public List<Portfolio> getUserPortfolios(@PathVariable Long userId) {
-        return portfolioService.getUserPortfolios(userId);
+    @RequestMapping(value = "/getOwnedPortfolios", method = RequestMethod.GET)
+    public List<Portfolio> getOwnedPortfolios(@RequestParam Long userId) {
+        return portfolioService.getOwnedPortfolios(userId);
     }
 
 }

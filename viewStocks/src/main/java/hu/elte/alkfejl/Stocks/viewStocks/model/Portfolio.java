@@ -3,8 +3,11 @@ package hu.elte.alkfejl.Stocks.viewStocks.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +23,7 @@ public class Portfolio {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @ManyToOne
@@ -29,19 +32,15 @@ public class Portfolio {
 
 //    TODO: private Set<User> sharedWith;
 
-    @OneToMany(mappedBy = "portfolio")
-    private Map<String, Position> positions;
+    @OneToMany(mappedBy = "portfolio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @MapKey(name = "ticker")
+    private Map<String, Position> positions = new HashMap<>();
 
-    @OneToMany(mappedBy = "portfolio")
-    private Set<Transaction> transactions;
-
-    @Column(name = "STARTING_CASH")
-    private double startingCash;
-
-    @Column(name = "REMAINING_CASH")
-    private double remainingCash;
+    @OneToMany(mappedBy = "portfolio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Transaction> transactions = new HashSet<>();
 
     @Column(name = "LAST_VALUE")
-    private double lastValue;
+    @ColumnDefault("0.0")
+    private Double lastValue = 0.0;
 
 }

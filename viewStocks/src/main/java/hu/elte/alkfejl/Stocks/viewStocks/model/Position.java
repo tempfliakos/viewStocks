@@ -26,10 +26,10 @@ public class Position {
     private String ticker;
 
     @Column(name = "NUM_OF_SHARES")
-    private int numOfShares;
+    private Integer numOfShares;
 
     @Column(name = "COST")
-    private double cost;
+    private Double cost;
 
 }
 

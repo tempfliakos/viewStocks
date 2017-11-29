@@ -19,11 +19,15 @@ public class TransactionService {
 
     @Autowired
     private TransactionRepository transactionRepository;
-    private PortfolioRepository portfolioRepository;
-    private PositionRepository positionRepository;
+
+    @Autowired
+    private PortfolioService portfolioService;
+
+    @Autowired
+    private PositionService positionService;
 
     public Transaction add(Transaction transaction) {
-        Portfolio portfolio = portfolioRepository.findOne(transaction.getPortfolio().getId());
+        Portfolio portfolio = portfolioService.getById(transaction.getPortfolio().getId());
         Map<String, Position> positions = portfolio.getPositions();
         Position position = positions.get(transaction.getTicker());
 
@@ -38,7 +42,7 @@ public class TransactionService {
             position.setCost(transaction.getCostBasis());
         }
 
-        positionRepository.save(position);
+        positionService.add(position);
         return transactionRepository.save(transaction);
     }
 

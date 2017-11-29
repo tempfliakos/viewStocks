@@ -39,19 +39,19 @@ public class Transaction {
     private Date date;
 
     @Column(name = "NUMBER_OF_SHARES", nullable = false)
-    private int numberOfShares;
+    private Integer numberOfShares;
 
     @Column(name = "PRICE_PER_AMOUNT", nullable = false)
-    private double pricePerAmount;
+    private Double pricePerAmount;
 
     @Column(name = "COMMISSION")
-    private double commission;
+    private Double commission;
 
     @Column(name = "COST_BASIS")
     @Formula("NUMBER_OF_SHARES * PRICE_PER_AMOUNT - COMMISION")
-    private double costBasis;
+    private Double costBasis;
 
     @Column(name = "DEDUCT_FROM_CASH", nullable = false)
-    private boolean deductFromCash;
+    private Double deductFromCash;
 
 }

@@ -1,9 +1,7 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.HashMap;
@@ -12,10 +10,8 @@ import java.util.Map;
 import java.util.Set;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "PORTFOLIOS")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Portfolio {
 
     @Id
@@ -40,7 +36,64 @@ public class Portfolio {
     private Set<Transaction> transactions = new HashSet<>();
 
     @Column(name = "LAST_VALUE")
-    @ColumnDefault("0.0")
     private Double lastValue = 0.0;
 
+    public Portfolio() {
+    }
+
+    public Portfolio(String name, User owner, Map<String, Position> positions, Set<Transaction> transactions, Double lastValue) {
+        this.name = name;
+        this.owner = owner;
+        this.positions = positions;
+        this.transactions = transactions;
+        this.lastValue = lastValue;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public Map<String, Position> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(Map<String, Position> positions) {
+        this.positions = positions;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public Double getLastValue() {
+        return lastValue;
+    }
+
+    public void setLastValue(Double lastValue) {
+        this.lastValue = lastValue;
+    }
 }

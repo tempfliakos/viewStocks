@@ -28,7 +28,11 @@ public class PositionService {
         positionRepository.save(position);
     }
 
-    public List<Position> getPortfolioPositions(Portfolio portfolio){
+    public List<Position> getPortfolioPositions(Portfolio portfolio) {
         return positionRepository.findByPortfolio(portfolio);
+    }
+
+    public Position findById(Long positionId) {
+        return positionRepository.findOne(positionId);
     }
 }

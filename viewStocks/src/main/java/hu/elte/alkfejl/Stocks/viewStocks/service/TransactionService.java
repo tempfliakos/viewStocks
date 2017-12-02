@@ -3,8 +3,6 @@ package hu.elte.alkfejl.Stocks.viewStocks.service;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Position;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
-import hu.elte.alkfejl.Stocks.viewStocks.repository.PortfolioRepository;
-import hu.elte.alkfejl.Stocks.viewStocks.repository.PositionRepository;
 import hu.elte.alkfejl.Stocks.viewStocks.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +25,27 @@ public class TransactionService {
     private PositionService positionService;
 
     public Transaction add(Transaction transaction) {
-        Portfolio portfolio = portfolioService.getById(transaction.getPortfolio().getId());
+        Portfolio portfolio = portfolioService.findById(transaction.getPortfolio().getId());
         Map<String, Position> positions = portfolio.getPositions();
         Position position = positions.get(transaction.getTicker());
 
-        if(position != null){
+        transaction.setCostBasis(
+                transaction.getNumberOfShares() * transaction.getPricePerAmount() - transaction.getCommission()
+        );
+
+        position = createNewPosition(portfolio, position, transaction);
+
+        positionService.add(position);
+        return transactionRepository.save(transaction);
+    }
+
+    public List<Transaction> addAll(List<Transaction> transactionList) {
+        return transactionRepository.save(transactionList);
+    }
+
+    private Position createNewPosition(Portfolio portfolio, Position position, Transaction transaction) {
+        if (position != null) {
+            position = positionService.findById(position.getId());
             position.setCost(position.getCost() + transaction.getCostBasis());
             position.setNumOfShares(position.getNumOfShares() + transaction.getNumberOfShares());
         } else {
@@ -42,12 +56,7 @@ public class TransactionService {
             position.setCost(transaction.getCostBasis());
         }
 
-        positionService.add(position);
-        return transactionRepository.save(transaction);
-    }
-
-    public List<Transaction> addAll(List<Transaction> transactionList){
-        return transactionRepository.save(transactionList);
+        return position;
     }
 
     public void delete(Transaction transaction) {
@@ -58,11 +67,11 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public List<Transaction> updateAll(List<Transaction> transactionList){
+    public List<Transaction> updateAll(List<Transaction> transactionList) {
         return transactionRepository.save(transactionList);
     }
 
-    public List<Transaction> getPortfolioTransactions(Portfolio portfolio){
+    public List<Transaction> getPortfolioTransactions(Portfolio portfolio) {
         return transactionRepository.findByPortfolio(portfolio);
     }
 }

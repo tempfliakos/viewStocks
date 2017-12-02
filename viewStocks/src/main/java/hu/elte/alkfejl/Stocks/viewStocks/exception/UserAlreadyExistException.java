@@ -1,4 +1,4 @@
-package hu.elte.alkfejl.Stocks.viewStocks.exceptions;
+package hu.elte.alkfejl.Stocks.viewStocks.exception;
 
 public class UserAlreadyExistException extends Throwable {
 

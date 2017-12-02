@@ -2,10 +2,12 @@ package hu.elte.alkfejl.Stocks.viewStocks.service;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.repository.PortfolioRepository;
+import hu.elte.alkfejl.Stocks.viewStocks.wrapper.PortfolioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,7 +18,7 @@ public class PortfolioService {
     private PortfolioRepository portfolioRepository;
 
     public Portfolio add(Portfolio portfolio) {
-       return portfolioRepository.save(portfolio);
+        return portfolioRepository.save(portfolio);
     }
 
     public void delete(Portfolio portfolio) {
@@ -27,11 +29,18 @@ public class PortfolioService {
         return portfolioRepository.save(portfolio);
     }
 
-    public Portfolio getById(Long portfolioId) {
+    public Portfolio findById(Long portfolioId) {
         return portfolioRepository.findOne(portfolioId);
     }
 
-    public List<Portfolio> getOwnedPortfolios(Long userId) {
-        return portfolioRepository.findByOwnerId(userId);
+    public List<PortfolioDto> getOwnedPortfolios(Long userId) {
+        List<Portfolio> portfolioList = portfolioRepository.findByOwnerId(userId);
+        List<PortfolioDto> portfolioDtoList = new ArrayList<>();
+
+        for (Portfolio p : portfolioList) {
+            portfolioDtoList.add(new PortfolioDto(p));
+        }
+
+        return portfolioDtoList;
     }
 }

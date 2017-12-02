@@ -14,15 +14,15 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public User register(
-            @RequestParam(name = "email") String email,
+            @RequestParam(name = "name") String name,
             @RequestParam(name = "password") String password ) {
-        return userService.register(email, password);
+        return userService.register(name, password);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public User login(@RequestParam String email,
+    public User login(@RequestParam String name,
                       @RequestParam String password ) {
-        return userService.login(email, password);
+        return userService.login(name, password);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)

@@ -2,6 +2,7 @@ package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.service.PortfolioService;
+import hu.elte.alkfejl.Stocks.viewStocks.wrapper.PortfolioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +30,13 @@ public class PortfolioController {
         return portfolioService.update(portfolio);
     }
 
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public Portfolio findById(@RequestParam Long portfolioId) {
+        return portfolioService.findById(portfolioId);
+    }
+
     @RequestMapping(value = "/getOwnedPortfolios", method = RequestMethod.GET)
-    public List<Portfolio> getOwnedPortfolios(@RequestParam Long userId) {
+    public List<PortfolioDto> getOwnedPortfolios(@RequestParam Long userId) {
         return portfolioService.getOwnedPortfolios(userId);
     }
 

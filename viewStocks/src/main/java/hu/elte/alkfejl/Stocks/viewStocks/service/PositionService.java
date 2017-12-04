@@ -20,6 +20,10 @@ public class PositionService {
         positionRepository.save(position);
     }
 
+    public void addAll(List<Position> positionList) {
+        positionRepository.save(positionList);
+    }
+
     public void delete(Position position) {
         positionRepository.delete(position);
     }

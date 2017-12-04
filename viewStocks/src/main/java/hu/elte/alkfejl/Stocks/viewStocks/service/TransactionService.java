@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,23 +28,33 @@ public class TransactionService {
     public Transaction add(Transaction transaction) {
         Portfolio portfolio = portfolioService.findById(transaction.getPortfolio().getId());
         Map<String, Position> positions = portfolio.getPositions();
-        Position position = positions.get(transaction.getTicker());
 
         transaction.setCostBasis(
                 transaction.getNumberOfShares() * transaction.getPricePerAmount() - transaction.getCommission()
         );
-
-        position = createNewPosition(portfolio, position, transaction);
+        Position position = createNewPosition(portfolio, positions, transaction);
 
         positionService.add(position);
         return transactionRepository.save(transaction);
     }
 
     public List<Transaction> addAll(List<Transaction> transactionList) {
+        Portfolio portfolio = portfolioService.findById(transactionList.get(0).getPortfolio().getId());
+        Map<String, Position> currentPositions = portfolio.getPositions();
+
+        List<Position> newPositionList = new ArrayList<>();
+        for (Transaction t : transactionList) {
+            t.setCostBasis(t.getNumberOfShares() * t.getPricePerAmount() - t.getCommission());
+            newPositionList.add(createNewPosition(portfolio, currentPositions, t));
+        }
+
+        positionService.addAll(newPositionList);
         return transactionRepository.save(transactionList);
     }
 
-    private Position createNewPosition(Portfolio portfolio, Position position, Transaction transaction) {
+    private Position createNewPosition(Portfolio portfolio, Map<String, Position> positions, Transaction transaction) {
+        Position position = positions.get(transaction.getTicker());
+
         if (position != null) {
             position = positionService.findById(position.getId());
             position.setCost(position.getCost() + transaction.getCostBasis());

@@ -1,6 +1,7 @@
 package hu.elte.alkfejl.Stocks.viewStocks.controller;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
+import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
 import hu.elte.alkfejl.Stocks.viewStocks.service.PortfolioService;
 import hu.elte.alkfejl.Stocks.viewStocks.wrapper.PortfolioDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,10 @@ public class PortfolioController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public Portfolio update(@RequestBody Portfolio portfolio) {
-        return portfolioService.update(portfolio);
+    public Portfolio update(@RequestBody Portfolio portfolio,
+                            @RequestBody Transaction transaction,
+                            @RequestBody String ticker) {
+        return portfolioService.update(portfolio,transaction,ticker);
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)

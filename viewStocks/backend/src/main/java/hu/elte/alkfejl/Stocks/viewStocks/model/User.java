@@ -3,6 +3,7 @@ package hu.elte.alkfejl.Stocks.viewStocks.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -82,5 +83,19 @@ public class User {
 
     public void setWatchlists(Set<Watchlist> watchlists) {
         this.watchlists = watchlists;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o != null && o.getClass() == getClass()) {
+            User u = (User) o;
+            return u.name.equals(name) && u.password.equals(password);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name,password);
     }
 }

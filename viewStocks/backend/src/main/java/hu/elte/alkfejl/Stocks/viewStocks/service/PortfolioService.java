@@ -1,6 +1,7 @@
 package hu.elte.alkfejl.Stocks.viewStocks.service;
 
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
+import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
 import hu.elte.alkfejl.Stocks.viewStocks.repository.PortfolioRepository;
 import hu.elte.alkfejl.Stocks.viewStocks.wrapper.PortfolioDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @SessionScope
@@ -25,7 +27,11 @@ public class PortfolioService {
         portfolioRepository.delete(portfolio);
     }
 
-    public Portfolio update(Portfolio portfolio) {
+    public Portfolio update(Portfolio portfolio, Transaction transaction, String ticker) {
+        if(portfolio.getTransactions().remove(transaction)) {
+            transaction.setTicker(ticker);
+            portfolio.getTransactions().add(transaction);
+        }
         return portfolioRepository.save(portfolio);
     }
 

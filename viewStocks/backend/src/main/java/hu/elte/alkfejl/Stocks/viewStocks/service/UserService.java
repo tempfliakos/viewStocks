@@ -17,11 +17,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User login(String name, String password) {
+    public User login(User user) {
         try {
-            User user = userRepository.findByName(name);
-            if(!user.equals(Optional.empty()) && password.equals(user.getPassword())){
-                return user;
+            User foundUser = userRepository.findByUsername(user.getUsername());
+            if(foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
+                return foundUser;
             } else {
                 throw new WrongUserAndPasswordPairException();
             }
@@ -31,15 +31,13 @@ public class UserService {
         return null;
     }
 
-    public User register(String name, String password){
-        User user = new User(name, password);
-        for(User u : userRepository.findAll()) {
-            if(user.equals(u)) {
-                try {
-                    throw new UserAlreadyExistException();
-                } catch (UserAlreadyExistException ex) {
-                    ex.printStackTrace();
-                }
+    public User register(User user){
+        User foundUser = userRepository.findByUsername(user.getUsername());
+        if(foundUser != null) {
+            try {
+                throw new UserAlreadyExistException();
+            } catch (UserAlreadyExistException ex) {
+                ex.printStackTrace();
             }
         }
         return userRepository.save(user);

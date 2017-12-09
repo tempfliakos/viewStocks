@@ -4,14 +4,12 @@ import hu.elte.alkfejl.Stocks.viewStocks.exception.PortfolioDoesNotExistExceptio
 import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Position;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
-import hu.elte.alkfejl.Stocks.viewStocks.model.TransactionType;
 import hu.elte.alkfejl.Stocks.viewStocks.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

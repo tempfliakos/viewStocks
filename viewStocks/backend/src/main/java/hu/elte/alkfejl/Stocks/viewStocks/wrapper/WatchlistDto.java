@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class WatchlistDto {
 
     private Long id;
-
     private User owner;
 
     public WatchlistDto(Watchlist watchlist) {

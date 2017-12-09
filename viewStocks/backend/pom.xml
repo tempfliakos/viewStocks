@@ -33,7 +33,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -59,6 +58,11 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.16</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.yahoofinance-api</groupId>
+			<artifactId>YahooFinanceAPI</artifactId>
+			<version>3.12.0</version>
 		</dependency>
     </dependencies>
 

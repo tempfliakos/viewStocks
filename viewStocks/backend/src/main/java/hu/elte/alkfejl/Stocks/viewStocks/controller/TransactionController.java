@@ -4,16 +4,14 @@ import hu.elte.alkfejl.Stocks.viewStocks.model.Portfolio;
 import hu.elte.alkfejl.Stocks.viewStocks.model.Transaction;
 import hu.elte.alkfejl.Stocks.viewStocks.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/transaction")
 public class TransactionController {
 

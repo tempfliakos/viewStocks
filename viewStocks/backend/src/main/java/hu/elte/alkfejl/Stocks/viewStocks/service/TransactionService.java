@@ -43,7 +43,6 @@ public class TransactionService {
             ex.printStackTrace();
         }
         return null;
-
     }
 
     public List<Transaction> addAll(List<Transaction> transactionList) {
@@ -64,7 +63,6 @@ public class TransactionService {
             ex.printStackTrace();
         }
         return null;
-
     }
 
     public void delete(Transaction transaction) {

@@ -31,13 +31,11 @@ public class TransactionService {
     public Transaction add(Transaction transaction) {
         try {
             Portfolio portfolio = portfolioService.findById(transaction.getPortfolio().getId());
-            if(portfolio == null) throw new PortfolioDoesNotExistException();
+            if (portfolio == null) throw new PortfolioDoesNotExistException();
             Map<String, Position> positions = portfolio.getPositions();
 
-            transaction.setCostBasis(
-                    transaction.getNumberOfShares() * transaction.getPricePerAmount() - transaction.getCommission()
-            );
-            Position position = createNewPosition(portfolio, positions, transaction);
+            transaction.setCostBasis(transaction.getNumberOfShares() * transaction.getPricePerAmount() - transaction.getCommission());
+            Position position = calculatePositionWithNewTransaction(portfolio, positions, transaction);
 
             positionService.add(position);
             return transactionRepository.save(transaction);
@@ -51,13 +49,13 @@ public class TransactionService {
     public List<Transaction> addAll(List<Transaction> transactionList) {
         try {
             Portfolio portfolio = portfolioService.findById(transactionList.get(0).getPortfolio().getId());
-            if(portfolio == null) throw new PortfolioDoesNotExistException();
-            Map<String, Position> currentPositions = portfolio.getPositions();
+            if (portfolio == null) throw new PortfolioDoesNotExistException();
+            Map<String, Position> positions = portfolio.getPositions();
 
             List<Position> newPositionList = new ArrayList<>();
             for (Transaction t : transactionList) {
                 t.setCostBasis(t.getNumberOfShares() * t.getPricePerAmount() - t.getCommission());
-                newPositionList.add(createNewPosition(portfolio, currentPositions, t));
+                newPositionList.add(calculatePositionWithNewTransaction(portfolio, positions, t));
             }
 
             positionService.addAll(newPositionList);
@@ -69,7 +67,52 @@ public class TransactionService {
 
     }
 
-    private Position createNewPosition(Portfolio portfolio, Map<String, Position> positions, Transaction transaction) {
+    public void delete(Transaction transaction) {
+        Portfolio portfolio = portfolioService.findById(transaction.getPortfolio().getId());
+        Map<String, Position> positions = portfolio.getPositions();
+
+        transaction.setCostBasis(transaction.getNumberOfShares() * transaction.getPricePerAmount() - transaction.getCommission());
+        Position position = calculatePositionWithRemovedTransaction(positions, transaction);
+
+        positionService.add(position);
+        transactionRepository.delete(transaction);
+    }
+
+    public Transaction update(Transaction newTransaction) {
+        Portfolio portfolio = portfolioService.findById(newTransaction.getPortfolio().getId());
+        Map<String, Position> positions = portfolio.getPositions();
+
+        Transaction oldTransaction = transactionRepository.findOne(newTransaction.getId());
+        newTransaction.setCostBasis(newTransaction.getNumberOfShares() * newTransaction.getPricePerAmount() - newTransaction.getCommission());
+
+        Position position = calculatePositionWithExistingTransaction(positions, oldTransaction, newTransaction);
+
+        positionService.add(position);
+        return transactionRepository.save(newTransaction);
+    }
+
+    public List<Transaction> updateAll(List<Transaction> newTransactionList) {
+        Portfolio portfolio = portfolioService.findById(newTransactionList.get(0).getPortfolio().getId());
+        Map<String, Position> positions = portfolio.getPositions();
+
+        List<Position> newPositionList = new ArrayList<>();
+        for (Transaction newTransaction : newTransactionList) {
+            Transaction oldTransaction = transactionRepository.findOne(newTransaction.getId());
+            newTransaction.setCostBasis(newTransaction.getNumberOfShares() * newTransaction.getPricePerAmount() - newTransaction.getCommission());
+            newPositionList.add(calculatePositionWithExistingTransaction(positions, oldTransaction, newTransaction));
+        }
+
+        positionService.addAll(newPositionList);
+        return transactionRepository.save(newTransactionList);
+    }
+
+    public List<Transaction> getPortfolioTransactions(Portfolio portfolio) {
+        return transactionRepository.findByPortfolio(portfolio);
+    }
+
+    /* service helper */
+
+    private Position calculatePositionWithNewTransaction(Portfolio portfolio, Map<String, Position> positions, Transaction transaction) {
         Position position = positions.get(transaction.getTicker());
 
         if (position != null) {
@@ -87,19 +130,21 @@ public class TransactionService {
         return position;
     }
 
-    public void delete(Transaction transaction) {
-        transactionRepository.delete(transaction);
+    private Position calculatePositionWithRemovedTransaction(Map<String, Position> positions, Transaction transaction) {
+        Position position = positionService.findById(positions.get(transaction.getTicker()).getId());
+
+        position.setCost(position.getCost() - transaction.getCostBasis());
+        position.setNumOfShares(position.getNumOfShares() - transaction.getNumberOfShares());
+
+        return position;
     }
 
-    public Transaction update(Transaction transaction) {
-        return transactionRepository.save(transaction);
-    }
+    private Position calculatePositionWithExistingTransaction(Map<String, Position> positions, Transaction oldTransaction, Transaction newTransaction) {
+        Position position = positions.get(oldTransaction.getTicker());
 
-    public List<Transaction> updateAll(List<Transaction> transactionList) {
-        return transactionRepository.save(transactionList);
-    }
+        position.setCost(position.getCost() - oldTransaction.getCostBasis() + newTransaction.getCostBasis());
+        position.setNumOfShares(position.getNumOfShares() - oldTransaction.getNumberOfShares() + newTransaction.getNumberOfShares());
 
-    public List<Transaction> getPortfolioTransactions(Portfolio portfolio) {
-        return transactionRepository.findByPortfolio(portfolio);
+        return position;
     }
 }

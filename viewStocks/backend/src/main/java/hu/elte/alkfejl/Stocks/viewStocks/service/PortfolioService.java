@@ -26,11 +26,7 @@ public class PortfolioService {
         portfolioRepository.delete(portfolio);
     }
 
-    public Portfolio update(Portfolio portfolio, Transaction transaction, String ticker) {
-        if(portfolio.getTransactions().remove(transaction)) {
-            transaction.setTicker(ticker);
-            portfolio.getTransactions().add(transaction);
-        }
+    public Portfolio update(Portfolio portfolio) {
         return portfolioRepository.save(portfolio);
     }
 

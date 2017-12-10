@@ -39,7 +39,7 @@ public class TransactionController {
         return transactionService.update(transaction);
     }
 
-    @RequestMapping(value = "/updateMultiple", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateMultiple", method = RequestMethod.PUT)
     public List<Transaction> updateAll(@RequestBody Transaction[] transactions) {
         List<Transaction> transactionList = Arrays.asList(transactions);
         return transactionService.updateAll(transactionList);

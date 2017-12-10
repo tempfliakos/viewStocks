@@ -28,10 +28,8 @@ public class PortfolioController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public Portfolio update(@RequestBody Portfolio portfolio,
-                            @RequestBody Transaction transaction,
-                            @RequestBody String ticker) {
-        return portfolioService.update(portfolio,transaction,ticker);
+    public Portfolio update(@RequestBody Portfolio portfolio) {
+        return portfolioService.update(portfolio);
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)

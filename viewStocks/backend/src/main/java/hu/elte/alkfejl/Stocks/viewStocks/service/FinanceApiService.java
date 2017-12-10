@@ -35,7 +35,6 @@ public class FinanceApiService {
         Map<String, Stock> stocks = YahooFinance.get(tickers);
 
         Map<String, StockDto> stockDtoMap = new HashMap<>();
-
         for (Map.Entry<String, Stock> s : stocks.entrySet()) {
             stockDtoMap.put(s.getKey(), new StockDto(s.getValue()));
         }

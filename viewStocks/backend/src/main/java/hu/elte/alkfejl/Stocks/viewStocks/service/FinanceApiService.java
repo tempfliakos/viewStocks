@@ -9,7 +9,9 @@ import yahoofinance.Stock;
 import yahoofinance.YahooFinance;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -26,11 +28,16 @@ public class FinanceApiService {
 
     public Map<String, StockDto> getQuotes(Long portfolioId) throws IOException {
         Map<String, Position> positions = portfolioService.findById(portfolioId).getPositions();
+
+        List<String> tickerList = new ArrayList<>(positions.keySet());
+        String[] tickers = new String[tickerList.size()];
+        tickerList.toArray(tickers);
+        Map<String, Stock> stocks = YahooFinance.get(tickers);
+
         Map<String, StockDto> stockDtoMap = new HashMap<>();
 
-        for (Map.Entry<String, Position> pe : positions.entrySet()) {
-            Stock s = YahooFinance.get(pe.getKey());
-            stockDtoMap.put(pe.getKey(), new StockDto(s));
+        for (Map.Entry<String, Stock> s : stocks.entrySet()) {
+            stockDtoMap.put(s.getKey(), new StockDto(s.getValue()));
         }
 
         return stockDtoMap;

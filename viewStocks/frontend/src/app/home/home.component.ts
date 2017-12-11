@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../_models/index';
+import {Portfolio} from '../_models/portfolio';
 // import { UserService } from '../_services/index';
 
 @Component({
@@ -10,6 +11,7 @@ import { User } from '../_models/index';
 
 export class HomeComponent {
   currentUser: User;
+  portfolios: Portfolio;
 
   constructor() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));

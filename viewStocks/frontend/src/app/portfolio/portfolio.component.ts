@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {PortfolioService} from '../_services/portfolio.service';
+import { PortfolioService } from '../_services';
 
 
 @Component({
@@ -8,7 +8,7 @@ import {PortfolioService} from '../_services/portfolio.service';
   templateUrl: 'portfolio.component.html'
 })
 
-export class RegisterComponent {
+export class PortfolioComponent {
   model: any = {};
   loading = false;
 

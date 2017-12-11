@@ -11,6 +11,7 @@ import { AuthenticationService, UserService } from './_services';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { PortfolioComponent } from './portfolio';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { RegisterComponent } from './register';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PortfolioComponent
   ],
   providers: [
     AuthGuard,

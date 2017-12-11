@@ -12,4 +12,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     List<Transaction> findByPortfolio(Portfolio portfolio);
 
+    Transaction findById(Long id);
 }

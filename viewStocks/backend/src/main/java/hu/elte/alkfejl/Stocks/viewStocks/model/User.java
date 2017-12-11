@@ -1,9 +1,9 @@
 package hu.elte.alkfejl.Stocks.viewStocks.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -15,10 +15,10 @@ public class User {
     @Column(name = "ID")
     private Long id;
 
-    @Column(nullable = false, name = "NAME", unique = true)
-    private String name;
+    @Column(nullable = false, name = "USERNAME", unique = true)
+    private String username;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, name = "PASSWORD")
     private String password;
 
@@ -30,16 +30,16 @@ public class User {
     @OneToMany(mappedBy = "owner")
     private Set<Watchlist> watchlists;
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
     public User() {
     }
 
-    public User(String name, String password, Set<Portfolio> portfolios, Set<Watchlist> watchlists) {
-        this.name = name;
+    public User(String username, String password, Set<Portfolio> portfolios, Set<Watchlist> watchlists) {
+        this.username = username;
         this.password = password;
         this.portfolios = portfolios;
         this.watchlists = watchlists;
@@ -53,14 +53,15 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -85,17 +86,4 @@ public class User {
         this.watchlists = watchlists;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if(o != null && o.getClass() == getClass()) {
-            User u = (User) o;
-            return u.name.equals(name) && u.password.equals(password);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name,password);
-    }
 }

@@ -12,11 +12,8 @@ import lombok.NoArgsConstructor;
 public class PortfolioDto {
 
     private Long id;
-
     private String name;
-
     private User owner;
-
     private Double lastValue;
 
     public PortfolioDto(Portfolio portfolio) {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/user")
 public class UserController {
 
@@ -13,16 +14,13 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public User register(
-            @RequestParam(name = "name") String name,
-            @RequestParam(name = "password") String password ) {
-        return userService.register(name, password);
+    public User register(@RequestBody User user) {
+        return userService.register(user);
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public User login(@RequestParam String name,
-                      @RequestParam String password ) {
-        return userService.login(name, password);
+    public User login(@RequestBody User user) {
+        return userService.login(user);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)

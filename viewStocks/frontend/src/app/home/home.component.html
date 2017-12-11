@@ -4,8 +4,8 @@
   <h3>Portfolios</h3>
   <ul>
     <li *ngFor="let p of portfolios">
-      { {portfolio.name} }
-      <a (click)="openPortfolio(p.id)">Open</a>
+      {{ p.name }}
+      <!--<a (click)="openPortfolio(p.id)">Open</a>-->
     </li>
     <a [routerLink]="['/portfolio/add']" class="btn btn-link">Add portfolio</a>
   </ul>

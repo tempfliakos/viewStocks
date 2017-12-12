@@ -12,6 +12,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { PortfolioComponent } from './portfolio';
+import {PortfolioService} from './_services/portfolio.service';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { PortfolioComponent } from './portfolio';
   providers: [
     AuthGuard,
     AuthenticationService,
-    UserService
+    UserService,
+    PortfolioService
   ],
   bootstrap: [AppComponent]
 })

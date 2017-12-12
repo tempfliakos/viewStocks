@@ -18,9 +18,8 @@ export class HomeComponent {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
-  // ngOnInit() {
-  //   this.loadAllUsers();
-  // }
+  ngOnInit(){
+  }
 
   // deleteUser(id: number) {
   //   this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
@@ -29,4 +28,7 @@ export class HomeComponent {
   // private loadAllUsers() {
   //   this.userService.getAll().subscribe(users => { this.users = users; });
   // }
+  openPortfolio(id: number) {
+
+  }
 }

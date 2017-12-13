@@ -82,7 +82,6 @@ Felhasználó létrehozhat több portfóliót is, így tetszés szerint csoporto
 ### 2.3 Modellek
 
 #### 2.3.1 Osztály modellek
-![alt text](docs/images/osztalymodellek.png)
 	
 
 #### 2.3.2 Adatbázis modellek

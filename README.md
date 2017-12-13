@@ -84,10 +84,10 @@ Felhasználó létrehozhat több portfóliót is, így tetszés szerint csoporto
 
 #### 2.3.1 Osztály modellek
 
-	![alt text](images/user story.jpg)
+	![alt text](userstory.jpg)
 
 #### 2.3.2 Adatbázis modellek
-	![alt text](images/adatbázisterv.jpg)
+	![alt text](adatbazisterv.jpg)
     
 ### 3. Implementáció
 

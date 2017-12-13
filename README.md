@@ -34,8 +34,7 @@ Felhasználó létrehozhat több portfóliót is, így tetszés szerint csoporto
   - ticker: egyedi azonosító részvényhez
 
 ### 1.5 Use-case modell
-
-	![alt text](docs/images/userstory.png)
+![alt text](docs/images/userstory.png)
     
     
 ## 2. Tervezés
@@ -83,11 +82,12 @@ Felhasználó létrehozhat több portfóliót is, így tetszés szerint csoporto
 ### 2.3 Modellek
 
 #### 2.3.1 Osztály modellek
-
+![alt text](docs/images/osztalymodellek.png)
 	
 
 #### 2.3.2 Adatbázis modellek
-	![alt text](docs/images/adatbazisterv.png)
+![alt text](docs/images/adatbazisterv.png)
+
     
 ### 3. Implementáció
 

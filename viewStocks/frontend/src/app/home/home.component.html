@@ -1,0 +1,14 @@
+<div class="col-md-6">
+  <h1>Hi {{currentUser.username}}!</h1>
+  <p>You're logged in!</p>
+  <h3>Portfolios</h3>
+  <ul>
+    <li *ngFor="let p of portfolios">
+      <div>p.name</div>
+      {{p.id + " " + p.name + " " + p.owner}}
+      <a (click)="openPortfolio(p.id)">Open</a>
+    </li>
+    <a [routerLink]="['/portfolio']" class="btn btn-link">Add portfolio</a>
+  </ul>
+  <p><a [routerLink]="['/login']">Logout</a></p>
+</div>
